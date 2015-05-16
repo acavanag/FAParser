@@ -90,6 +90,7 @@ class ViewController: UIViewController {
                 }
                 var tempToken = token as String
                 if currentSectionToken == "name" {
+                    tempToken = tempToken.stringByReplacingOccurrencesOfString("'", withString: "", options: nil, range: nil)
                     tempToken = tempToken.stringByTrimmingCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet)
                     tempToken = tempToken.capitalizedString
                 }
