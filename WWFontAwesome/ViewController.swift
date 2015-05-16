@@ -69,7 +69,6 @@ class ViewController: UIViewController {
             }
             
             if token == "name" {
-                currentFA?.created = join("", currentTokenStream)
                 currentTokenStream = [String]()
                 if let currentFA = currentFA {
                     allFA.append(currentFA)
@@ -82,9 +81,13 @@ class ViewController: UIViewController {
                 currentFA?.id = join("-", currentTokenStream)
                 currentTokenStream = [String]()
             } else if token == "created" {
+                currentFA?.created = tokens[index + 1] as String
                 currentFA?.unicode = join("", currentTokenStream)
                 currentTokenStream = [String]()
             } else {
+                if currentSectionToken == "created" {
+                    continue
+                }
                 var tempToken = token as String
                 if currentSectionToken == "name" {
                     tempToken = tempToken.stringByTrimmingCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet)
